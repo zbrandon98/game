@@ -21,41 +21,41 @@ void Game::GameLoop()
     SDL_Event e; 
     bool quit = false; 
     while(quit == false)
-    { 
-        while(SDL_PollEvent(&e))
+    {
+       while(SDL_PollEvent(&e))
         {
             if(e.type == SDL_QUIT)
             {
                 quit = true;
-
             }
             if (e.type == SDL_KEYDOWN)
             {
-					if (e.key.keysym.sym == SDLK_ESCAPE)
-					{
-						quit = true;
-					}
-
-                if(e.key.keysym.sym == SDLK_UP)
+                switch (e.key.keysym.sym)
                 {
+                case SDLK_ESCAPE:
+                    quit = true;
+                    break;
+                
+                case SDLK_UP:
                     printf("Up pressed\n");
-                }
-                else if (e.key.keysym.sym == SDLK_DOWN)
-                {
+                    break;
+
+                case SDLK_DOWN:
                     printf("Down pressed\n");
-                }
-                else if (e.key.keysym.sym == SDLK_LEFT)
-                {
+                    break;
+
+                case SDLK_LEFT:
                     printf("Left pressed\n");
-                }
-                else if (e.key.keysym.sym == SDLK_RIGHT)
-                {
+                    break;
+
+                case SDLK_RIGHT:
                     printf("Right pressed\n");
+                    break;
+
+                default:
+                    break;
                 }
             }
-                
-            
-            
         } 
     }
 }
