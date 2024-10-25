@@ -2,18 +2,14 @@
 
 Game::Game()
 {
-    handler.InitWindow();
 };              
 
 void Game::Run()
 {
-    StartGame();
-    EndGame();
-}
-
-void Game::StartGame()
-{
+    handler.InitializeWindow();
+    handler.DisplaySplashScreen();
     GameLoop();
+    EndGame();
 }
 
 void Game::GameLoop()

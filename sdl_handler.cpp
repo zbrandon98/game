@@ -4,7 +4,7 @@ SDL_Handler::SDL_Handler()
 {
 }
 
-void SDL_Handler::InitWindow()
+void SDL_Handler::InitializeWindow()
 {
     if (SDL_Init(SDL_INIT_VIDEO) < 0)
     {
@@ -12,10 +12,10 @@ void SDL_Handler::InitWindow()
         return;
     }
 
-    window = SDL_CreateWindow("Asteroid", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 300, 300, SDL_WINDOW_SHOWN);
+
+    window = SDL_CreateWindow("Asteroid", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
     screen_surface = SDL_GetWindowSurface(window);
 
-    LoadAndApplySplashScreen();
 }
 
 void SDL_Handler::DestroyWindow()
@@ -29,7 +29,7 @@ void SDL_Handler::DestroyWindow()
     SDL_Quit();
 }
 
-void SDL_Handler::LoadAndApplySplashScreen()
+void SDL_Handler::DisplaySplashScreen()
 {
     buffer_surface = SDL_LoadBMP("./assets/blackbuck.bmp");
     SDL_BlitSurface(buffer_surface, NULL, screen_surface, NULL);

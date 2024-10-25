@@ -6,8 +6,7 @@
 class Game
 {
     private:
-        SDL_Handler handler;
-        void StartGame();
+        SDL_Handler handler{};
         void GameLoop();
         void EndGame();
         

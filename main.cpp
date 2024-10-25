@@ -2,7 +2,7 @@
 
 int main(int argc, char **argv)
 {
-    Game Asteroid;
+    Game Asteroid{};
     Asteroid.Run();
 
     return 0;
