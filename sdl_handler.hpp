@@ -8,17 +8,17 @@
 class SDL_Handler
 {
     private:
+        const int SCREEN_HEIGHT = 500;
+        const int SCREEN_WIDTH = 500;
         SDL_Window* window = NULL;
-    	SDL_Surface* screen_surface = NULL;
-        SDL_Surface* buffer_surface = NULL;
-        const int SCREEN_WIDTH = 300;
-        const int SCREEN_HEIGHT = 300;
     public:
+        SDL_Renderer* renderer = NULL;
 
         SDL_Handler();
         void InitializeWindow();
-        void DestroyWindow();
+        void InitializeMenus();
         void DisplaySplashScreen();
+        void DestroyWindow();
 
 };
 

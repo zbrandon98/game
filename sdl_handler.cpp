@@ -12,16 +12,17 @@ void SDL_Handler::InitializeWindow()
         return;
     }
 
-
     window = SDL_CreateWindow("Asteroid", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
-    screen_surface = SDL_GetWindowSurface(window);
-
+    
+    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+    SDL_SetRenderDrawColor(renderer, 0xAA,  0xAA, 0xAA, 0xFF);
+    SDL_RenderPresent(renderer);
 }
 
 void SDL_Handler::DestroyWindow()
 {
-    SDL_FreeSurface(buffer_surface);
-    buffer_surface = NULL;
+    SDL_DestroyRenderer(renderer);
+    renderer = NULL;
 
     SDL_DestroyWindow(window);
     window = NULL;
@@ -31,7 +32,15 @@ void SDL_Handler::DestroyWindow()
 
 void SDL_Handler::DisplaySplashScreen()
 {
-    buffer_surface = SDL_LoadBMP("./assets/blackbuck.bmp");
-    SDL_BlitSurface(buffer_surface, NULL, screen_surface, NULL);
-    SDL_UpdateWindowSurface(window);
+    SDL_Surface* image_surface = SDL_LoadBMP("./assets/blackbuck.bmp");
+    SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, image_surface);
+    
+    SDL_FreeSurface(image_surface);
+    image_surface = NULL;
+    
+    SDL_RenderCopy(renderer, texture, NULL, NULL);
+    SDL_RenderPresent(renderer);
+    
+    SDL_DestroyTexture(texture);
+    texture = NULL;
 }

@@ -8,7 +8,6 @@ class Game
     private:
         SDL_Handler handler{};
         void GameLoop();
-        void EndGame();
         
     public:
         Game();
